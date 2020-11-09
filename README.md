@@ -58,8 +58,15 @@ pass .1.3.6.1.2.1.25.1.10 /bin/sh /root/snmp-smart-status.sh
 # Known issues
 #### Recently debian added the user "Debian-snmp" to the snmp.service but for SMART/LVM Status we need the root user.
 #### edit snmpd.service and replace "Debian-snmp" with "root"
+`nano /lib/systemd/system/snmpd.service`
+##### From
 ```
-nano /lib/systemd/system/snmpd.service
+...
+ExecStart=/usr/sbin/snmpd -Lsd -Lf /dev/null -u Debian-snmp -g Debian-snmp -I -smux,mteTrigger,mteTriggerConf -f -p /run/snmpd.pid
+...
+```
+##### To
+```
 ...
 ExecStart=/usr/sbin/snmpd -Lsd -Lf /dev/null -u root -g Debian-snmp -I -smux,mteTrigger,mteTriggerConf -f -p /run/snmpd.pid
 ...
