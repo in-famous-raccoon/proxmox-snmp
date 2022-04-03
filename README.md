@@ -9,22 +9,20 @@
 
 ### Paste content from sh file to /opt folder and make executable
 `nano /opt/snmp-cpu-temp.sh`<br/>
-`chmod +x /opt/snmp-cpu-temp.sh`
+`nano /opt/snmp-lvm-used.sh`<br/>
+`nano /opt/snmp-smart-status.sh`<br/>
+`chmod +x /opt/snmp-*`
 
 ### Run snmpd as root, because debian added the user "Debian-snmp" to the snmp.service but for SMART/LVM Status we need to be root.
 #### edit snmpd.service and replace "Debian-snmp" with "root"
 `nano /lib/systemd/system/snmpd.service`
 ##### From
 ```
-...
 ExecStart=/usr/sbin/snmpd -Lsd -Lf /dev/null -u Debian-snmp -g Debian-snmp -I -smux,mteTrigger,mteTriggerConf -f -p /run/snmpd.pid
-...
 ```
 ##### To
 ```
-...
 ExecStart=/usr/sbin/snmpd -Lsd -Lf /dev/null -u root -g Debian-snmp -I -smux,mteTrigger,mteTriggerConf -f -p /run/snmpd.pid
-...
 ```
 #### Restart SNMPD
 `systemctl restart snmpd.service`
