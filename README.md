@@ -9,8 +9,10 @@
 
 ### Paste content from sh file to /opt folder and make executable
 `nano /opt/snmp-cpu-temp.sh`<br/>
-`nano /opt/snmp-lvm-used.sh`<br/>
 `nano /opt/snmp-smart-status.sh`<br/>
+`nano /opt/snmp-lvm-used.sh` for LVM<br/>
+`nano /opt/snmp-zfs-used.sh` for ZFS<br/>
+`nano /opt/snmp-ceph-used.sh` for Ceph<br/>
 `chmod +x /opt/snmp-*`
 
 ### Run snmpd as root, because debian added the user "Debian-snmp" to the snmp.service but for SMART/LVM Status we need to be root.
