@@ -1,7 +1,7 @@
 # Configuration on Proxmox
 
-### Install snmpd
-`apt install snmpd`
+### Install snmpd and sensors package for obtaining CPU temperature
+`apt install snmpd sensors`
 
 ### Configure snmpd
 #### Paste content from snmpd.conf to /etc/snmp/snmpd.conf
